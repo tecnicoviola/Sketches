@@ -1,0 +1,20 @@
+{
+  "name": "@repo/backend-common",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@repo/db": "workspace:*"
+  },
+  "dependencies": {
+    "@types/node": "^22.14.0"
+  }
+}
