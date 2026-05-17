@@ -1,35 +1,70 @@
 "use client";
 
 import { WS_URL } from "../config";
-import { initDraw } from "../draw";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Canvas } from "./Canvas";
 
-export function RoomCanvas({roomId}: {roomId: string}) {
-    const [socket, setSocket] = useState<WebSocket | null>(null);
+export function RoomCanvas({ roomId }: { roomId: string }) {
+  const [socket, setSocket] = useState<WebSocket | null>(null);
+  const router = useRouter();
 
-    useEffect(() => {
-        const ws = new WebSocket(`${WS_URL}?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNmE0MjM3OS02YjE2LTQ2NjEtOWFhNi0zYWQzM2U3Y2I0ZGIiLCJpYXQiOjE3NzY5MjIyMjF9.b1ZxGLW-pZNKWaTTByj8ldrqGW3-606kBXikzdt2Ma4`)
+  useEffect(() => {
+    // ✅ read token from localStorage not hardcoded
+    const token = localStorage.getItem("token");
 
-        ws.onopen = () => {
-            setSocket(ws);
-            const data = JSON.stringify({
-                type: "join_room",
-                roomId
-            });
-            console.log(data);
-            ws.send(data)
-        }
-        
-    }, [])
-   
-    if (!socket) {
-        return <div>
-            Connecting to server....
-        </div>
+    if (!token) {
+      router.push("/signin");
+      return;
     }
 
-    return <div>
-        <Canvas roomId={roomId} socket={socket} />
+    const ws = new WebSocket(`${WS_URL}?token=${token}`);
+
+    ws.onopen = () => {
+      setSocket(ws);
+      const data = JSON.stringify({
+        type: "join_room",
+        roomId,
+      });
+      console.log("Joined room:", data);
+      ws.send(data);
+    };
+
+    ws.onerror = (err) => {
+      console.error("WebSocket error:", err);
+    };
+
+    ws.onclose = () => {
+      console.log("WebSocket disconnected");
+    };
+
+    return () => {
+      ws.close();
+    };
+  }, []);
+
+  if (!socket) {
+    return (
+      <div style={{
+        minHeight: "100vh",
+        background: "#02122F",
+        color: "#F0ECDD",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontFamily: "'Jost', sans-serif",
+        fontSize: "14px",
+        fontWeight: 300,
+        letterSpacing: "0.2px",
+      }}>
+        Connecting to canvas...
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <Canvas roomId={roomId} socket={socket} />
     </div>
+  );
 }
