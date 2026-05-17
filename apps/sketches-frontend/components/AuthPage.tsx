@@ -83,7 +83,7 @@ export function AuthPage({ isSignin }: { isSignin: boolean }) {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center 40%;
+          object-position: center left;
           filter: brightness(0.72);
           transition: transform 14s ease;
         }
@@ -130,8 +130,8 @@ export function AuthPage({ isSignin }: { isSignin: boolean }) {
           opacity: 0.55;
         }
         .sk-left-sub {
-          font-size: 13px;
-          font-weight: 300;
+          font-size: 14px;
+          font-weight: 400;
           color: rgba(240,236,221,0.58);
           letter-spacing: 0.25px;
           line-height: 1.7;
@@ -312,7 +312,7 @@ export function AuthPage({ isSignin }: { isSignin: boolean }) {
           </h1>
           <div className="sk-left-rule" />
           <p className="sk-left-sub">
-            A canvas for thinking — draw, diagram,<br />
+            A canvas for thinking, draw, diagram,<br />
             and collaborate without friction.
           </p>
         </div>
