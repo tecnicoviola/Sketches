@@ -9,9 +9,7 @@ export function AuthPage({ isSignin }: { isSignin: boolean }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [mode, setMode] = useState<"signin" | "signup">(
-    isSignin ? "signin" : "signup"
-  );
+  const [mode, setMode] = useState<"signin" | "signup">(isSignin ? "signin" : "signup");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -19,36 +17,39 @@ export function AuthPage({ isSignin }: { isSignin: boolean }) {
   const isSigninMode = mode === "signin";
 
   async function handleSubmit() {
-    setError("");
-    if (!email || !password) { setError("Please fill in all fields."); return; }
-    if (!isSigninMode && !name) { setError("Please enter your full name."); return; }
-    setLoading(true);
-    try {
-      if (isSigninMode) {
-        const res = await fetch("http://localhost:3004/signin", {
-          method: "POST", headers: { "Content-Type": "application/json" },
-          mode: "cors", body: JSON.stringify({ email, password }),
-        });
-        if (!res.ok) { const d = await res.json(); setError(d.message || "Sign in failed."); return; }
-        const data = await res.json();
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userId", data.userId);
-        router.push("/dashboard");
-      } else {
-        const res = await fetch("http://localhost:3004/signup", {
-          method: "POST", headers: { "Content-Type": "application/json" },
-          mode: "cors", body: JSON.stringify({ name, email, password }),
-        });
-        if (!res.ok) { const d = await res.json(); setError(d.message || "Sign up failed."); return; }
-        router.push("/signin");
-      }
-    } catch (err) {
-      console.error(err);
-      setError("Something went wrong. Please check your connection.");
-    } finally {
-      setLoading(false);
+  setError("");
+  if (!email || !password) { setError("Please fill in all fields."); return; }
+  if (!isSigninMode && !name) { setError("Please enter your full name."); return; }
+  setLoading(true);
+
+  const BASE_URL = process.env.NEXT_PUBLIC_HTTP_URL;
+
+  try {
+    if (isSigninMode) {
+      const res = await fetch(`${BASE_URL}/signin`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        mode: "cors", body: JSON.stringify({ email, password }),
+      });
+      if (!res.ok) { const d = await res.json(); setError(d.message || "Sign in failed."); return; }
+      const data = await res.json();
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.userId);
+      router.push("/dashboard");
+    } else {
+      const res = await fetch(`${BASE_URL}/signup`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        mode: "cors", body: JSON.stringify({ name, email, password }),
+      });
+      if (!res.ok) { const d = await res.json(); setError(d.message || "Sign up failed."); return; }
+      router.push("/signin");
     }
+  } catch (err) {
+    console.error(err);
+    setError("Something went wrong. Please check your connection.");
+  } finally {
+    setLoading(false);
   }
+}
 
   return (
     <div style={{ display: "flex", minHeight: "100vh", fontFamily: "'Jost', sans-serif" }}>

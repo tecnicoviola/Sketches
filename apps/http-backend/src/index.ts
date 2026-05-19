@@ -40,7 +40,7 @@ app.post("/signup", async (req, res) => {
   const parseData = CreateUserSchema.safeParse(body);
   if (!parseData.success) {
     res.status(400).json({
-      message: "Incorrect inputs: " + parseData.error.issues[0]?.message,
+      message: "Incorrect inputs: " + parseData.error.issues[0]?.message,//get the first error 
     });
     return;
   }

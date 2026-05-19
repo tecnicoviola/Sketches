@@ -10,7 +10,7 @@ export function RoomCanvas({ roomId }: { roomId: string }) {
   const router = useRouter();
 
   useEffect(() => {
-    // ✅ read token from localStorage not hardcoded
+    // read token from localStorage not hardcoded
     const token = localStorage.getItem("token");
 
     if (!token) {

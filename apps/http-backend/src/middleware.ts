@@ -6,9 +6,7 @@ export function middleware(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers["authorization"] ?? "";
   
   // strip "Bearer " prefix
-  const token = authHeader.startsWith("Bearer ")
-    ? authHeader.slice(7)
-    : authHeader;
+  const token = authHeader.startsWith("Bearer ")? authHeader.slice(7): authHeader; //this is  a ternary operator
 
   if (!token) {
     res.status(403).json({ message: "Unauthorized - no token" });
