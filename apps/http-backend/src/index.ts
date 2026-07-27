@@ -20,6 +20,11 @@ const app = express();
 const prisma = prismaClient;
 const PORT = process.env.PORT || 3004;
 
+// Startup check for DATABASE_URL format
+if (!process.env.DATABASE_URL || (!process.env.DATABASE_URL.startsWith("postgresql://") && !process.env.DATABASE_URL.startsWith("postgres://"))) {
+  console.error("❌ CRITICAL DATABASE_URL ERROR: process.env.DATABASE_URL is missing or invalid. It must start with postgresql:// or postgres://");
+}
+
 //  Middleware FIRST before everything
 app.use(express.json());
 const frontendOrigin = process.env.FRONTEND_URL;
@@ -61,6 +66,9 @@ app.post("/signup", async (req, res) => {
   } catch (e: any) {
     if (e?.code === "P2002") {
       res.status(409).json({ message: "User already exists with this email." });
+    } else if (e?.name === "PrismaClientInitializationError") {
+      console.error("Signup DB Initialization Error:", e?.message);
+      res.status(500).json({ message: "Database connection failed. Please verify DATABASE_URL on Render." });
     } else {
       console.error("Signup error:", e);
       res.status(500).json({ message: "Internal server error." });
@@ -83,29 +91,39 @@ app.post("/signin", async (req, res) => {
     return;
   }
 
-  const user = await prismaClient.user.findFirst({
-    where: {
-      email: parseData.data.username,
-    },
-  });
+  try {
+    const user = await prismaClient.user.findFirst({
+      where: {
+        email: parseData.data.username,
+      },
+    });
 
-  if (!user) {
-    res.status(403).json({ message: "Invalid email or password." });
-    return;
+    if (!user) {
+      res.status(403).json({ message: "Invalid email or password." });
+      return;
+    }
+
+    const passwordMatch = await bcrypt.compare(
+      parseData.data.password,
+      user.password
+    );
+
+    if (!passwordMatch) {
+      res.status(403).json({ message: "Invalid email or password." });
+      return;
+    }
+
+    const token = jwt.sign({ userId: user.id }, JWT_SECRET);
+    res.json({ token, userId: user.id });
+  } catch (e: any) {
+    if (e?.name === "PrismaClientInitializationError") {
+      console.error("Signin DB Initialization Error:", e?.message);
+      res.status(500).json({ message: "Database connection failed. Please verify DATABASE_URL on Render." });
+    } else {
+      console.error("Signin error:", e);
+      res.status(500).json({ message: "Internal server error." });
+    }
   }
-
-  const passwordMatch = await bcrypt.compare(
-    parseData.data.password,
-    user.password
-  );
-
-  if (!passwordMatch) {
-    res.status(403).json({ message: "Invalid email or password." });
-    return;
-  }
-
-  const token = jwt.sign({ userId: user.id }, JWT_SECRET);
-  res.json({ token, userId: user.id });
 });
 
 import { customAlphabet } from "nanoid";
