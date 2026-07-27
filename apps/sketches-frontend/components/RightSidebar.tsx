@@ -64,13 +64,13 @@ export function RightSidebar({ open, onClose }: Props) {
           right: 0;
           width: 340px;
           height: 100vh;
-          background: #232329;
-          border-left: 1px solid rgba(255, 255, 255, 0.08);
+          background: #02122F;
+          border-left: 1px solid rgba(240, 236, 221, 0.12);
           z-index: 450;
           display: flex;
           flex-direction: column;
           box-shadow: -8px 0 32px rgba(0, 0, 0, 0.4);
-          font-family: sans-serif;
+          font-family: 'Jost', sans-serif;
           animation: slideFromRight 0.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
         @keyframes slideFromRight {
@@ -82,7 +82,7 @@ export function RightSidebar({ open, onClose }: Props) {
           align-items: center;
           justify-content: space-between;
           padding: 12px 16px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+          border-bottom: 1px solid rgba(240, 236, 221, 0.08);
         }
         .tab-cluster {
           display: flex;
@@ -96,7 +96,7 @@ export function RightSidebar({ open, onClose }: Props) {
           border: none;
           padding: 6px 10px;
           border-radius: 6px;
-          color: rgba(255, 255, 255, 0.4);
+          color: rgba(240, 236, 221, 0.45);
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -104,8 +104,8 @@ export function RightSidebar({ open, onClose }: Props) {
           transition: all 0.15s;
         }
         .tab-trigger.active {
-          background: #3b3b44;
-          color: #a5b4fc;
+          background: rgba(240, 236, 221, 0.12);
+          color: #F0ECDD;
         }
         .header-actions {
           display: flex;
@@ -115,7 +115,7 @@ export function RightSidebar({ open, onClose }: Props) {
         .action-icon-btn {
           background: none;
           border: none;
-          color: rgba(255, 255, 255, 0.4);
+          color: rgba(240, 236, 221, 0.45);
           cursor: pointer;
           padding: 6px;
           border-radius: 6px;
@@ -125,11 +125,11 @@ export function RightSidebar({ open, onClose }: Props) {
           transition: all 0.15s;
         }
         .action-icon-btn:hover {
-          color: rgba(255, 255, 255, 0.8);
-          background: rgba(255, 255, 255, 0.05);
+          color: #F0ECDD;
+          background: rgba(240, 236, 221, 0.05);
         }
         .action-icon-btn.pinned {
-          color: #a5b4fc;
+          color: #F0ECDD;
         }
         .sidebar-body-viewport {
           flex: 1;
@@ -140,7 +140,7 @@ export function RightSidebar({ open, onClose }: Props) {
           gap: 16px;
         }
         .sidebar-body-viewport::-webkit-scrollbar { width: 4px; }
-        .sidebar-body-viewport::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+        .sidebar-body-viewport::-webkit-scrollbar-thumb { background: rgba(240,236,221,0.1); border-radius: 2px; }
 
         .search-input-wrapper {
           position: relative;
@@ -151,25 +151,26 @@ export function RightSidebar({ open, onClose }: Props) {
         .search-icon-left {
           position: absolute;
           left: 10px;
-          color: rgba(255, 255, 255, 0.4);
+          color: rgba(240, 236, 221, 0.45);
         }
         .sidebar-search-bar {
           width: 100%;
-          background: #1c1c21;
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(240, 236, 221, 0.03);
+          border: 1px solid rgba(240, 236, 221, 0.12);
           border-radius: 8px;
           padding: 10px 12px 10px 36px;
-          color: #fff;
+          color: #F0ECDD;
           font-size: 13px;
           outline: none;
         }
-        .sidebar-search-bar:focus { border-color: #a5b4fc; }
+        .sidebar-search-bar:focus { border-color: rgba(240, 236, 221, 0.4); }
         
         .sidebar-section-title {
           font-size: 14px;
-          font-weight: 600;
-          color: #a5b4fc;
+          font-weight: 500;
+          color: #F0ECDD;
           margin-top: 8px;
+          font-family: 'Cormorant Garamond', serif;
         }
         
         /* Dropdown Menu CSS */

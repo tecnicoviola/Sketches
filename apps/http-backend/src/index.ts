@@ -22,9 +22,10 @@ const PORT = process.env.PORT || 3004;
 
 //  Middleware FIRST before everything
 app.use(express.json());
+const frontendOrigin = process.env.FRONTEND_URL;
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: frontendOrigin ? (frontendOrigin.includes(",") ? frontendOrigin.split(",") : frontendOrigin) : "http://localhost:3001",
     credentials: true,
   })
 );
@@ -107,27 +108,104 @@ app.post("/signin", async (req, res) => {
   res.json({ token, userId: user.id });
 });
 
-// ROOM
-app.post("/room", middleware, async (req, res) => {
-  const parseData = CreateRoomSchema.safeParse(req.body);
-  if (!parseData.success) {
-    res.status(400).json({ message: "Incorrect inputs" });
-    return;
-  }
+import { customAlphabet } from "nanoid";
+const generateRoomCode = customAlphabet("23456789abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ", 5);
 
+// ROOMS LIST FOR USER
+app.get("/rooms", middleware, async (req, res) => {
+  //@ts-ignore
+  const userId = req.userId;
+  try {
+    const rooms = await prismaClient.room.findMany({
+      where: {
+        adminId: userId,
+      },
+      orderBy: {
+        createAt: "desc",
+      },
+    });
+    res.json({ rooms });
+  } catch (e) {
+    res.status(500).json({ message: "Error fetching rooms" });
+  }
+});
+
+// CREATE ROOM (NO NAME BODY REQUIRED, CAP = 3)
+app.post("/room", middleware, async (req, res) => {
   //@ts-ignore
   const userId = req.userId;
 
   try {
-    const room = await prismaClient.room.create({
-      data: {
-        slug: parseData.data.name,
-        adminId: userId,
-      },
+    const existingCount = await prismaClient.room.count({
+      where: { adminId: userId },
     });
-    res.json({ roomId: room.id });
+    if (existingCount >= 3) {
+      res.status(403).json({ message: "Room limit reached — delete a room to create a new one." });
+      return;
+    }
   } catch (e) {
-    res.status(409).json({ message: "Room already exists with this name." });
+    res.status(500).json({ message: "Failed to check room count." });
+    return;
+  }
+
+  let room = null;
+  let attempts = 0;
+  while (attempts < 5) {
+    attempts++;
+    const code = generateRoomCode();
+    try {
+      room = await prismaClient.room.create({
+        data: {
+          slug: code,
+          adminId: userId,
+        },
+      });
+      break;
+    } catch (e: any) {
+      if (e?.code === "P2002" && attempts < 5) {
+        continue;
+      }
+      res.status(500).json({ message: "Failed to create room." });
+      return;
+    }
+  }
+
+  if (!room) {
+    res.status(500).json({ message: "Failed to create room." });
+    return;
+  }
+
+  res.json({ roomId: room.id, code: room.slug });
+});
+
+// DELETE ROOM BY CODE
+app.delete("/room/:code", middleware, async (req, res) => {
+  const code = String(req.params.code || "").trim();
+  //@ts-ignore
+  const userId = req.userId;
+
+  try {
+    const room = await prismaClient.room.findFirst({
+      where: { slug: { equals: code, mode: "insensitive" } },
+    });
+    if (!room) {
+      res.status(404).json({ message: "Room not found." });
+      return;
+    }
+
+    if (room.adminId !== userId) {
+      res.status(403).json({ message: "Unauthorized to delete this room." });
+      return;
+    }
+
+    await prismaClient.room.delete({
+      where: { id: room.id },
+    });
+
+    res.json({ message: "Room deleted successfully." });
+  } catch (e) {
+    console.error("Delete room error:", e);
+    res.status(500).json({ message: "Failed to delete room." });
   }
 });
 
@@ -146,10 +224,12 @@ app.get("/chats/:roomId", async (req, res) => {
   }
 });
 
-// ROOM BY SLUG
+// ROOM BY SLUG / CODE
 app.get("/room/:slug", async (req, res) => {
-  const slug = req.params.slug;
-  const room = await prismaClient.room.findFirst({ where: { slug } });
+  const slug = String(req.params.slug || "").trim();
+  const room = await prismaClient.room.findFirst({
+    where: { slug: { equals: slug, mode: "insensitive" } },
+  });
   res.json({ room });
 });
 

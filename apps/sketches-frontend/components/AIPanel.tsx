@@ -123,8 +123,8 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
           right: 0;
           width: 480px;
           height: 100vh;
-          background: #1e1e24;
-          border-left: 1px solid rgba(255,255,255,0.08);
+          background: #02122F;
+          border-left: 1px solid rgba(240,236,221,0.12);
           z-index: 400;
           display: flex;
           flex-direction: column;
@@ -140,23 +140,24 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
           align-items: center;
           justify-content: space-between;
           padding: 18px 20px;
-          border-bottom: 1px solid rgba(255,255,255,0.07);
+          border-bottom: 1px solid rgba(240,236,221,0.08);
         }
         .ai-panel-title {
           font-size: 14px;
-          font-weight: 600;
-          color: rgba(255,255,255,0.9);
-          font-family: sans-serif;
+          font-weight: 500;
+          color: #F0ECDD;
+          font-family: 'Jost', sans-serif;
           display: flex;
           align-items: center;
           gap: 8px;
         }
         .ai-badge {
           font-size: 9px;
-          font-weight: 700;
+          font-weight: 500;
           letter-spacing: 0.5px;
-          background: linear-gradient(135deg, #7c3aed, #a855f7);
-          color: white;
+          background: rgba(240,236,221,0.12);
+          border: 1px solid rgba(240,236,221,0.2);
+          color: #F0ECDD;
           padding: 2px 7px;
           border-radius: 20px;
         }
@@ -164,13 +165,13 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
           display: flex;
           gap: 0;
           padding: 0 20px;
-          border-bottom: 1px solid rgba(255,255,255,0.07);
+          border-bottom: 1px solid rgba(240,236,221,0.08);
         }
         .ai-tab {
           padding: 12px 16px;
           font-size: 12.5px;
-          font-family: sans-serif;
-          color: rgba(255,255,255,0.4);
+          font-family: 'Jost', sans-serif;
+          color: rgba(240,236,221,0.45);
           cursor: pointer;
           border-bottom: 2px solid transparent;
           transition: all 0.15s;
@@ -180,11 +181,11 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
           white-space: nowrap;
         }
         .ai-tab.active {
-          color: #a78bfa;
-          border-bottom-color: #a78bfa;
+          color: #F0ECDD;
+          border-bottom-color: #F0ECDD;
         }
         .ai-tab:hover:not(.active) {
-          color: rgba(255,255,255,0.7);
+          color: rgba(240,236,221,0.75);
         }
         .ai-body {
           flex: 1;
@@ -195,7 +196,7 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
           gap: 16px;
         }
         .ai-body::-webkit-scrollbar { width: 4px; }
-        .ai-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+        .ai-body::-webkit-scrollbar-thumb { background: rgba(240,236,221,0.12); border-radius: 2px; }
         .ai-empty {
           flex: 1;
           display: flex;
@@ -208,24 +209,24 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
         }
         .ai-empty h3 {
           font-size: 18px;
-          font-weight: 600;
-          color: rgba(255,255,255,0.85);
-          font-family: sans-serif;
+          font-weight: 400;
+          color: #F0ECDD;
+          font-family: 'Cormorant Garamond', serif;
         }
         .ai-empty p {
           font-size: 13px;
-          color: rgba(255,255,255,0.35);
-          font-family: sans-serif;
+          color: rgba(240,236,221,0.5);
+          font-family: 'Jost', sans-serif;
           line-height: 1.6;
           max-width: 320px;
         }
         .ai-textarea {
           width: 100%;
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 10px;
+          background: rgba(240,236,221,0.03);
+          border: 1px solid rgba(240,236,221,0.12);
+          border-radius: 8px;
           padding: 14px 16px;
-          color: rgba(255,255,255,0.85);
+          color: #F0ECDD;
           font-size: 13.5px;
           font-family: 'Courier New', monospace;
           resize: vertical;
@@ -235,45 +236,46 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
           line-height: 1.6;
         }
         .ai-textarea:focus {
-          border-color: rgba(167,139,250,0.5);
-          background: rgba(255,255,255,0.07);
+          border-color: rgba(240,236,221,0.4);
+          background: rgba(240,236,221,0.05);
         }
-        .ai-textarea::placeholder { color: rgba(255,255,255,0.2); }
+        .ai-textarea::placeholder { color: rgba(240,236,221,0.3); }
         .ai-send-btn {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 8px;
           padding: 12px 20px;
-          background: linear-gradient(135deg, #7c3aed, #a855f7);
-          color: white;
+          background: #F0ECDD;
+          color: #02122F;
           border: none;
-          border-radius: 10px;
-          font-size: 13px;
-          font-weight: 600;
-          font-family: sans-serif;
+          border-radius: 6px;
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          font-family: 'Jost', sans-serif;
           cursor: pointer;
           transition: all 0.2s;
-          box-shadow: 0 4px 16px rgba(124,58,237,0.35);
         }
         .ai-send-btn:hover:not(:disabled) {
+          background: rgba(240,236,221,0.88);
           transform: translateY(-1px);
-          box-shadow: 0 6px 20px rgba(124,58,237,0.5);
         }
-        .ai-send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .ai-send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
         .ai-preview {
-          background: rgba(255,255,255,0.03);
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 10px;
+          background: rgba(240,236,221,0.03);
+          border: 1px solid rgba(240,236,221,0.08);
+          border-radius: 8px;
           padding: 16px;
         }
         .ai-preview-title {
           font-size: 11px;
-          font-weight: 600;
+          font-weight: 500;
           letter-spacing: 1.5px;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.3);
-          font-family: sans-serif;
+          color: rgba(240,236,221,0.4);
+          font-family: 'Jost', sans-serif;
           margin-bottom: 10px;
         }
         .ai-preview-shapes {
@@ -283,10 +285,10 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
         }
         .ai-shape-chip {
           font-size: 11px;
-          font-family: sans-serif;
-          color: rgba(255,255,255,0.6);
-          background: rgba(167,139,250,0.12);
-          border: 1px solid rgba(167,139,250,0.2);
+          font-family: 'Jost', sans-serif;
+          color: #F0ECDD;
+          background: rgba(240,236,221,0.08);
+          border: 1px solid rgba(240,236,221,0.15);
           padding: 3px 10px;
           border-radius: 20px;
         }
@@ -297,24 +299,25 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
           gap: 8px;
           padding: 13px 20px;
           background: #F0ECDD;
-          color: #1b1b1f;
+          color: #02122F;
           border: none;
-          border-radius: 10px;
-          font-size: 13px;
-          font-weight: 700;
-          font-family: sans-serif;
+          border-radius: 6px;
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          font-family: 'Jost', sans-serif;
           cursor: pointer;
           transition: all 0.2s;
-          letter-spacing: 0.3px;
         }
         .ai-insert-btn:hover {
-          background: #e8e4d5;
+          background: rgba(240,236,221,0.88);
           transform: translateY(-1px);
         }
         .ai-code-block {
-          background: #0d0d0d;
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 10px;
+          background: #02122F;
+          border: 1px solid rgba(240,236,221,0.12);
+          border-radius: 8px;
           overflow: hidden;
         }
         .ai-code-header {
@@ -322,13 +325,13 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
           align-items: center;
           justify-content: space-between;
           padding: 10px 14px;
-          border-bottom: 1px solid rgba(255,255,255,0.06);
-          background: rgba(255,255,255,0.03);
+          border-bottom: 1px solid rgba(240,236,221,0.08);
+          background: rgba(240,236,221,0.03);
         }
         .ai-code-lang {
           font-size: 11px;
           font-family: monospace;
-          color: rgba(255,255,255,0.3);
+          color: rgba(240,236,221,0.4);
         }
         .ai-code-actions {
           display: flex;
@@ -339,18 +342,18 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
           align-items: center;
           gap: 5px;
           padding: 5px 10px;
-          background: rgba(255,255,255,0.07);
-          border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 6px;
-          color: rgba(255,255,255,0.6);
+          background: rgba(240,236,221,0.07);
+          border: 1px solid rgba(240,236,221,0.12);
+          border-radius: 4px;
+          color: rgba(240,236,221,0.7);
           font-size: 11px;
-          font-family: sans-serif;
+          font-family: 'Jost', sans-serif;
           cursor: pointer;
           transition: all 0.15s;
         }
         .ai-code-btn:hover {
-          background: rgba(255,255,255,0.12);
-          color: rgba(255,255,255,0.9);
+          background: rgba(240,236,221,0.12);
+          color: #F0ECDD;
         }
         .ai-code-pre {
           padding: 16px;
@@ -359,19 +362,19 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
           overflow-y: auto;
           font-size: 12px;
           font-family: 'Courier New', monospace;
-          color: rgba(255,255,255,0.75);
+          color: rgba(240,236,221,0.85);
           line-height: 1.6;
           white-space: pre-wrap;
           word-break: break-all;
         }
         .ai-error {
           font-size: 12.5px;
-          color: #f87171;
-          background: rgba(248,113,113,0.1);
-          border: 1px solid rgba(248,113,113,0.2);
-          border-radius: 8px;
+          color: #c97b6e;
+          background: rgba(201,123,110,0.1);
+          border: 1px solid rgba(201,123,110,0.2);
+          border-radius: 6px;
           padding: 10px 14px;
-          font-family: sans-serif;
+          font-family: 'Jost', sans-serif;
         }
         .mermaid-split {
           display: grid;
@@ -380,11 +383,11 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
         }
         .ai-label {
           font-size: 11px;
-          font-weight: 600;
+          font-weight: 500;
           letter-spacing: 1.5px;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.3);
-          font-family: sans-serif;
+          color: rgba(240,236,221,0.4);
+          font-family: 'Jost', sans-serif;
           margin-bottom: 6px;
         }
       `}</style>
@@ -393,7 +396,7 @@ export function AIPanel({ open, onClose, onInsertShapes, canvasRef }: Props) {
         {/* Header */}
         <div className="ai-panel-header">
           <div className="ai-panel-title">
-            <Wand2 size={16} color="#a78bfa" />
+            <Wand2 size={16} color="#F0ECDD" />
             Generate
             <span className="ai-badge">AI</span>
           </div>

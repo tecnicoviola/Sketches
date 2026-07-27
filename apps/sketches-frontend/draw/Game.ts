@@ -721,10 +721,14 @@ export class Game {
   private isDraggingShape = false;
   private dragStartX = 0;
   private dragStartY = 0;
+  private scale = 1;
+  private eraserTrail: { x: number; y: number; timestamp: number }[] = [];
 
   public onCursorsUpdate?: (cursors: RemoteCursor[]) => void;
   public onToolChange?: (tool: string) => void;
   public onAIResult?: (shape: Shape) => void;
+  public onShapesCountChange?: (count: number) => void;
+  public onDrawingStart?: () => void;
 
   socket: WebSocket;
 
@@ -752,6 +756,36 @@ export class Game {
   setLineWidth(w: number) { this.lineWidth = w; }
   setLocked(v: boolean) { this.locked = v; }
 
+  public notifyShapesCount() {
+    this.onShapesCountChange?.(this.existingShapes.length);
+  }
+
+  public getShapesCount() {
+    return this.existingShapes.length;
+  }
+
+  public zoomIn() {
+    this.scale = Math.min(3, +(this.scale + 0.1).toFixed(1));
+    this.clearCanvas();
+    return Math.round(this.scale * 100);
+  }
+
+  public zoomOut() {
+    this.scale = Math.max(0.3, +(this.scale - 0.1).toFixed(1));
+    this.clearCanvas();
+    return Math.round(this.scale * 100);
+  }
+
+  public resetZoom() {
+    this.scale = 1;
+    this.clearCanvas();
+    return 100;
+  }
+
+  public getZoomPercent() {
+    return Math.round(this.scale * 100);
+  }
+
   setBackground(color: string) {
     this.bgColor = color;
     this.clearCanvas();
@@ -765,6 +799,7 @@ export class Game {
   resetCanvas() {
     this.existingShapes = [];
     this.undoStack = [];
+    this.notifyShapesCount();
     this.clearCanvas();
   }
 
@@ -808,12 +843,17 @@ export class Game {
     if (!this.existingShapes.length) return;
     this.undoStack.push([...this.existingShapes]);
     this.existingShapes.pop();
+    this.notifyShapesCount();
     this.clearCanvas();
   }
 
   redo() {
     const last = this.undoStack.pop();
-    if (last) { this.existingShapes = last; this.clearCanvas(); }
+    if (last) {
+      this.existingShapes = last;
+      this.notifyShapesCount();
+      this.clearCanvas();
+    }
   }
 
   async recognizeShape() {
@@ -833,6 +873,7 @@ export class Game {
       const newShape: Shape = { ...data.shape, color: this.strokeColor, lineWidth: this.lineWidth };
       this.existingShapes.push(newShape);
       this.lastPencilShape = null;
+      this.notifyShapesCount();
       this.clearCanvas();
       this.socket.send(JSON.stringify({ type: "chat", message: JSON.stringify({ shape: newShape }), roomId: this.roomId }));
     } catch (e) { console.error("AI failed:", e); }
@@ -840,6 +881,7 @@ export class Game {
 
   async init() {
     this.existingShapes = await getExistingShapes(this.roomId);
+    this.notifyShapesCount();
     this.clearCanvas();
   }
 
@@ -859,6 +901,7 @@ export class Game {
         } else {
           this.existingShapes.push(payload.shape);
         }
+        this.notifyShapesCount();
         this.clearCanvas();
       }
       if (msg.type === "cursor") {
@@ -1068,6 +1111,30 @@ export class Game {
       ctx.restore();
     }
 
+    if (this.eraserTrail.length > 0) {
+      const now = Date.now();
+      this.eraserTrail = this.eraserTrail.filter(p => now - p.timestamp < 350);
+      if (this.eraserTrail.length > 0) {
+        ctx.save();
+        ctx.translate(this.offsetX, this.offsetY);
+        this.eraserTrail.forEach(p => {
+          const age = now - p.timestamp;
+          const progress = age / 350;
+          const alpha = Math.max(0, (1 - progress) * 0.5);
+          const radius = (this.lineWidth * 3) + 10;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(240, 236, 221, ${alpha * 0.15})`;
+          ctx.fill();
+          ctx.strokeStyle = `rgba(240, 236, 221, ${alpha})`;
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        });
+        ctx.restore();
+        requestAnimationFrame(() => this.clearCanvas());
+      }
+    }
+
     this.remoteCursors.forEach(c => this.drawCursor(c.x, c.y, c.color, c.userId));
   }
 
@@ -1136,6 +1203,7 @@ export class Game {
     this.clicked = true;
     this.startX = mouseCanvasX;
     this.startY = mouseCanvasY;
+    this.onDrawingStart?.();
     
     if (this.selectedTool === "pencil" || this.selectedTool === "lasso") {
       this.pencilPoints = [{ x: this.startX, y: this.startY }];
@@ -1299,6 +1367,7 @@ export class Game {
     if (!this.locked) this.onToolChange?.(this.selectedTool);
     this.undoStack = [];
     this.existingShapes.push(shape);
+    this.notifyShapesCount();
     this.clearCanvas();
     this.socket.send(JSON.stringify({ type: "chat", message: JSON.stringify({ shape }), roomId: this.roomId }));
   };
@@ -1429,6 +1498,41 @@ export class Game {
     if (this.selectedTool === "laser") {
       this.laserPoints.push({ x: e.clientX, y: e.clientY });
       this.clearCanvas(); return;
+    }
+
+    if (this.selectedTool === "eraser") {
+      this.eraserTrail.push({ x: mouseCanvasX, y: mouseCanvasY, timestamp: Date.now() });
+      const THRESHOLD = 20;
+      const initialCount = this.existingShapes.length;
+      this.existingShapes = this.existingShapes.filter(s => {
+        if (s.type === "rect" || s.type === "diamond" || s.type === "image" || s.type === "text") {
+          return !(mouseCanvasX >= s.x - THRESHOLD && mouseCanvasX <= s.x + s.width + THRESHOLD &&
+                   mouseCanvasY >= s.y - THRESHOLD && mouseCanvasY <= s.y + s.height + THRESHOLD);
+        }
+        if (s.type === "circle") {
+          const dist = Math.sqrt((mouseCanvasX - s.centerX) ** 2 + (mouseCanvasY - s.centerY) ** 2);
+          return dist > s.radius + THRESHOLD;
+        }
+        if (s.type === "line" || s.type === "arrow") {
+          const dx = s.x2 - s.x1, dy = s.y2 - s.y1;
+          const len2 = dx * dx + dy * dy;
+          const t = Math.max(0, Math.min(1, ((mouseCanvasX - s.x1) * dx + (mouseCanvasY - s.y1) * dy) / (len2 || 1)));
+          const nearX = s.x1 + t * dx, nearY = s.y1 + t * dy;
+          const dist = Math.sqrt((mouseCanvasX - nearX) ** 2 + (mouseCanvasY - nearY) ** 2);
+          return dist > THRESHOLD;
+        }
+        if (s.type === "pencil") {
+          return !s.points.some(p =>
+            Math.sqrt((mouseCanvasX - p.x) ** 2 + (mouseCanvasY - p.y) ** 2) < THRESHOLD * 2
+          );
+        }
+        return true;
+      });
+      if (this.existingShapes.length !== initialCount) {
+        this.notifyShapesCount();
+      }
+      this.clearCanvas();
+      return;
     }
 
     this.clearCanvas();

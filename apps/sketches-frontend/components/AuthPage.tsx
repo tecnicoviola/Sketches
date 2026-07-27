@@ -1,5 +1,6 @@
 "use client";
 
+import { HTTP_BACKEND } from "@/config";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -17,12 +18,12 @@ export function AuthPage({ isSignin }: { isSignin: boolean }) {
   const isSigninMode = mode === "signin";
 
   async function handleSubmit() {
-  setError("");
-  if (!email || !password) { setError("Please fill in all fields."); return; }
-  if (!isSigninMode && !name) { setError("Please enter your full name."); return; }
-  setLoading(true);
+    setError("");
+    if (!email || !password) { setError("Please fill in all fields."); return; }
+    if (!isSigninMode && !name) { setError("Please enter your full name."); return; }
+    setLoading(true);
 
-  const BASE_URL = process.env.NEXT_PUBLIC_HTTP_URL;
+    const BASE_URL = HTTP_BACKEND;
 
   try {
     if (isSigninMode) {

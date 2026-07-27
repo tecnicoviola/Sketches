@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import {
   FolderOpen, Download, Image, Users, Terminal, Search,
-  HelpCircle, Trash2, Sparkles, GitBranch, MessageCircle,
-  UserPlus, Settings, Sun, Moon, Monitor, ChevronRight,
+  HelpCircle, Trash2, Sparkles, GitBranch, LayoutDashboard,
+  Settings, Sun, Moon, Monitor, ChevronRight,
   X, Copy, Check, Grid, ZoomIn, ZoomOut
 } from "lucide-react";
 
@@ -46,6 +47,7 @@ export function HamburgerMenu({
   onResetCanvas, onExportImage, onChangeBackground,
   canvasBackground, canvasRef, onToggleGrid, showGrid, onFindText,
 }: Props) {
+  const router = useRouter();
   const [open, setOpen]                     = useState(false);
   const [theme, setTheme]                   = useState<"light"|"dark"|"system">("dark");
   const [language, setLanguage]             = useState("English");
@@ -328,7 +330,7 @@ export function HamburgerMenu({
         .hm-overlay.open .hm-backdrop { opacity:1; }
         .hm-panel {
           position:absolute;top:12px;left:12px;width:300px;
-          background:#2c2c32;border:1px solid rgba(255,255,255,0.08);
+          background:#02122F;border:1px solid rgba(240,236,221,0.12);
           border-radius:12px;overflow:hidden;
           box-shadow:0 16px 48px rgba(0,0,0,0.6);
           transform:scale(0.95) translateY(-8px);opacity:0;
@@ -336,120 +338,120 @@ export function HamburgerMenu({
           pointer-events:none;max-height:90vh;overflow-y:auto;
         }
         .hm-overlay.open .hm-panel { transform:scale(1) translateY(0);opacity:1;pointer-events:all; }
-        .hm-item { display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;color:rgba(255,255,255,0.8);font-size:13.5px;font-family:sans-serif;cursor:pointer;transition:background 0.15s; }
-        .hm-item:hover { background:rgba(255,255,255,0.07); }
+        .hm-item { display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;color:rgba(240,236,221,0.85);font-size:13.5px;font-family:'Jost',sans-serif;cursor:pointer;transition:background 0.15s; }
+        .hm-item:hover { background:rgba(240,236,221,0.07); }
         .hm-item-left { display:flex;align-items:center;gap:12px; }
-        .hm-item-shortcut { font-size:11px;color:rgba(255,255,255,0.3);font-family:monospace;white-space:nowrap; }
-        .hm-sep { height:1px;background:rgba(255,255,255,0.07);margin:4px 0; }
-        .hm-section-label { padding:8px 16px 4px;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);font-family:sans-serif; }
+        .hm-item-shortcut { font-size:11px;color:rgba(240,236,221,0.3);font-family:monospace;white-space:nowrap; }
+        .hm-sep { height:1px;background:rgba(240,236,221,0.08);margin:4px 0; }
+        .hm-section-label { padding:8px 16px 4px;font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:rgba(240,236,221,0.35);font-family:'Jost',sans-serif; }
         .hm-theme-btns { display:flex;gap:6px;padding:0 16px 12px; }
-        .hm-theme-btn { flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.5);font-size:12px;font-family:sans-serif;cursor:pointer;transition:all 0.15s; }
-        .hm-theme-btn.active { background:rgba(99,102,241,0.25);border-color:rgba(99,102,241,0.5);color:#a5b4fc; }
-        .hm-theme-btn:hover:not(.active) { background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.8); }
+        .hm-theme-btn { flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:8px;border:1px solid rgba(240,236,221,0.1);background:transparent;color:rgba(240,236,221,0.5);font-size:12px;font-family:'Jost',sans-serif;cursor:pointer;transition:all 0.15s; }
+        .hm-theme-btn.active { background:rgba(240,236,221,0.15);border-color:rgba(240,236,221,0.3);color:#F0ECDD; }
+        .hm-theme-btn:hover:not(.active) { background:rgba(240,236,221,0.07);color:rgba(240,236,221,0.85); }
         .hm-bg-grid { display:flex;gap:8px;padding:0 16px 14px;flex-wrap:wrap; }
         .hm-bg-dot { width:28px;height:28px;border-radius:6px;cursor:pointer;transition:transform 0.15s;border:2px solid transparent;box-sizing:border-box; }
         .hm-bg-dot:hover { transform:scale(1.1); }
-        .hm-bg-dot.active { border-color:#a78bfa; }
-        .hm-lang-dropdown { margin:0 16px 12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;overflow:hidden; }
-        .hm-lang-option { padding:8px 14px;font-size:13px;color:rgba(255,255,255,0.7);font-family:sans-serif;cursor:pointer;transition:background 0.15s; }
-        .hm-lang-option:hover { background:rgba(255,255,255,0.07); }
-        .hm-lang-option.active { color:#a78bfa;background:rgba(99,102,241,0.1); }
+        .hm-bg-dot.active { border-color:#F0ECDD; box-shadow: 0 0 0 2px #02122F, 0 0 0 3.5px #F0ECDD; }
+        .hm-lang-dropdown { margin:0 16px 12px;background:rgba(240,236,221,0.03);border:1px solid rgba(240,236,221,0.1);border-radius:8px;overflow:hidden; }
+        .hm-lang-option { padding:8px 14px;font-size:13px;color:rgba(240,236,221,0.7);font-family:'Jost',sans-serif;cursor:pointer;transition:background 0.15s; }
+        .hm-lang-option:hover { background:rgba(240,236,221,0.07); }
+        .hm-lang-option.active { color:#F0ECDD;background:rgba(240,236,221,0.12); }
         .hm-panel::-webkit-scrollbar { width:4px; }
-        .hm-panel::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1);border-radius:2px; }
+        .hm-panel::-webkit-scrollbar-thumb { background:rgba(240,236,221,0.1);border-radius:2px; }
 
         /* Command palette */
         .cmd-palette {
-          width:580px;max-width:95vw;background:#1e1e24;
-          border:1px solid rgba(255,255,255,0.12);border-radius:14px;
+          width:580px;max-width:95vw;background:#02122F;
+          border:1px solid rgba(240,236,221,0.12);border-radius:14px;
           overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.8);
         }
         .cmd-input-wrap {
           display:flex;align-items:center;gap:12px;
-          padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.07);
+          padding:16px 20px;border-bottom:1px solid rgba(240,236,221,0.08);
         }
         .cmd-input {
           flex:1;background:none;border:none;outline:none;
-          font-size:15px;color:rgba(255,255,255,0.9);font-family:sans-serif;
+          font-size:15px;color:#F0ECDD;font-family:'Jost',sans-serif;
         }
-        .cmd-input::placeholder { color:rgba(255,255,255,0.25); }
+        .cmd-input::placeholder { color:rgba(240,236,221,0.3); }
         .cmd-list { max-height:360px;overflow-y:auto;padding:6px; }
         .cmd-list::-webkit-scrollbar { width:4px; }
-        .cmd-list::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1);border-radius:2px; }
+        .cmd-list::-webkit-scrollbar-thumb { background:rgba(240,236,221,0.1);border-radius:2px; }
         .cmd-item {
           display:flex;align-items:center;justify-content:space-between;
           padding:10px 14px;border-radius:8px;cursor:pointer;
-          font-size:13.5px;font-family:sans-serif;color:rgba(255,255,255,0.75);
+          font-size:13.5px;font-family:'Jost',sans-serif;color:rgba(240,236,221,0.8);
           transition:background 0.1s;
         }
-        .cmd-item.active { background:rgba(124,58,237,0.25);color:#fff; }
-        .cmd-item:hover { background:rgba(255,255,255,0.06); }
+        .cmd-item.active { background:rgba(240,236,221,0.15);color:#F0ECDD; }
+        .cmd-item:hover { background:rgba(240,236,221,0.07); }
         .cmd-shortcut {
-          font-size:11px;font-family:monospace;color:rgba(255,255,255,0.25);
-          background:rgba(255,255,255,0.07);padding:2px 7px;border-radius:4px;
+          font-size:11px;font-family:monospace;color:rgba(240,236,221,0.3);
+          background:rgba(240,236,221,0.08);padding:2px 7px;border-radius:4px;
         }
         .cmd-footer {
-          padding:10px 20px;border-top:1px solid rgba(255,255,255,0.06);
+          padding:10px 20px;border-top:1px solid rgba(240,236,221,0.08);
           display:flex;gap:16px;
-          font-size:11px;color:rgba(255,255,255,0.25);font-family:sans-serif;
+          font-size:11px;color:rgba(240,236,221,0.3);font-family:'Jost',sans-serif;
         }
         .cmd-footer kbd {
-          background:rgba(255,255,255,0.08);padding:1px 6px;
-          border-radius:4px;color:rgba(255,255,255,0.4);
+          background:rgba(240,236,221,0.08);padding:1px 6px;
+          border-radius:4px;color:rgba(240,236,221,0.5);
         }
 
         /* Export modal */
         .export-modal {
-          width:700px;max-width:95vw;background:#1e1e24;
-          border:1px solid rgba(255,255,255,0.1);border-radius:14px;
+          width:700px;max-width:95vw;background:#02122F;
+          border:1px solid rgba(240,236,221,0.12);border-radius:14px;
           overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.8);
           display:grid;grid-template-columns:1fr 1fr;
         }
         .export-preview-pane {
-          background:#111;display:flex;align-items:center;
+          background:#010a1a;display:flex;align-items:center;
           justify-content:center;padding:24px;min-height:280px;
         }
         .export-options-pane { padding:24px;display:flex;flex-direction:column;gap:16px; }
-        .export-header { font-size:16px;font-weight:600;color:rgba(255,255,255,0.9);font-family:sans-serif;margin-bottom:4px; }
-        .export-row { display:flex;align-items:center;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);font-family:sans-serif; }
+        .export-header { font-size:16px;font-weight:400;color:#F0ECDD;font-family:'Cormorant Garamond',serif;margin-bottom:4px; }
+        .export-row { display:flex;align-items:center;justify-content:space-between;font-size:13px;color:rgba(240,236,221,0.75);font-family:'Jost',sans-serif; }
         .export-scale-btns { display:flex;gap:6px; }
         .export-scale-btn {
-          width:36px;height:28px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);
-          background:transparent;color:rgba(255,255,255,0.5);font-size:12px;
-          font-family:sans-serif;cursor:pointer;transition:all 0.15s;
+          width:36px;height:28px;border-radius:6px;border:1px solid rgba(240,236,221,0.1);
+          background:transparent;color:rgba(240,236,221,0.5);font-size:12px;
+          font-family:'Jost',sans-serif;cursor:pointer;transition:all 0.15s;
         }
-        .export-scale-btn.active { background:rgba(124,58,237,0.3);border-color:rgba(124,58,237,0.5);color:#a78bfa; }
+        .export-scale-btn.active { background:rgba(240,236,221,0.15);border-color:rgba(240,236,221,0.3);color:#F0ECDD; }
         .export-filename {
-          background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
-          border-radius:8px;padding:8px 12px;color:rgba(255,255,255,0.8);
-          font-size:13px;font-family:sans-serif;outline:none;width:100%;box-sizing:border-box;
+          background:rgba(240,236,221,0.03);border:1px solid rgba(240,236,221,0.12);
+          border-radius:8px;padding:8px 12px;color:#F0ECDD;
+          font-size:13px;font-family:'Jost',sans-serif;outline:none;width:100%;box-sizing:border-box;
         }
-        .export-filename:focus { border-color:rgba(124,58,237,0.5); }
+        .export-filename:focus { border-color:rgba(240,236,221,0.4); }
         .export-btns { display:flex;gap:8px;margin-top:auto; }
         .export-btn {
           flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
-          padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);
-          background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.8);
-          font-size:12px;font-weight:600;font-family:sans-serif;cursor:pointer;
+          padding:10px;border-radius:8px;border:1px solid rgba(240,236,221,0.12);
+          background:rgba(240,236,221,0.05);color:rgba(240,236,221,0.85);
+          font-size:12px;font-weight:500;font-family:'Jost',sans-serif;cursor:pointer;
           transition:all 0.15s;
         }
-        .export-btn:hover { background:rgba(255,255,255,0.1);color:#fff; }
-        .export-btn.primary { background:rgba(124,58,237,0.3);border-color:rgba(124,58,237,0.5);color:#a78bfa; }
-        .export-btn.primary:hover { background:rgba(124,58,237,0.45); }
+        .export-btn:hover { background:rgba(240,236,221,0.1);color:#F0ECDD; }
+        .export-btn.primary { background:#F0ECDD;border-color:#F0ECDD;color:#02122F; }
+        .export-btn.primary:hover { background:rgba(240,236,221,0.88); }
 
         /* Collab modal */
         .collab-modal {
-          width:480px;max-width:95vw;background:#1e1e24;
-          border:1px solid rgba(255,255,255,0.1);border-radius:14px;
+          width:480px;max-width:95vw;background:#02122F;
+          border:1px solid rgba(240,236,221,0.12);border-radius:14px;
           padding:28px;box-shadow:0 24px 64px rgba(0,0,0,0.8);
         }
-        .collab-title { font-size:18px;font-weight:600;color:rgba(255,255,255,0.9);font-family:sans-serif;margin-bottom:20px; }
-        .collab-label { font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);font-family:sans-serif;margin-bottom:6px; }
+        .collab-title { font-size:18px;font-weight:400;color:#F0ECDD;font-family:'Cormorant Garamond',serif;margin-bottom:20px; }
+        .collab-label { font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(240,236,221,0.4);font-family:'Jost',sans-serif;margin-bottom:6px; }
         .collab-input {
-          width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
-          border-radius:8px;padding:10px 14px;color:rgba(255,255,255,0.85);
-          font-size:14px;font-family:sans-serif;outline:none;box-sizing:border-box;
+          width:100%;background:rgba(240,236,221,0.03);border:1px solid rgba(240,236,221,0.12);
+          border-radius:8px;padding:10px 14px;color:#F0ECDD;
+          font-size:14px;font-family:'Jost',sans-serif;outline:none;box-sizing:border-box;
         }
-        .collab-input:focus { border-color:rgba(124,58,237,0.5); }
+        .collab-input:focus { border-color:rgba(240,236,221,0.4); }
         .collab-link-row { display:flex;gap:8px;align-items:center; }
         .collab-link-box {
           flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
@@ -495,13 +497,13 @@ export function HamburgerMenu({
       <button
         onClick={() => setOpen(o => !o)}
         style={{
-          position:"fixed", top:12, left:12, width:40, height:40,
-          borderRadius:8,
-          background: open ? "rgba(99,102,241,0.25)" : "#2c2c32",
-          border: `1px solid ${open ? "rgba(99,102,241,0.5)" : "rgba(255,255,255,0.08)"}`,
-          color: open ? "#a5b4fc" : "rgba(255,255,255,0.8)",
-          cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center",
-          zIndex:300, transition:"all 0.15s", boxShadow:"0 4px 12px rgba(0,0,0,0.3)",
+          position: "fixed", top: 12, left: 12, width: 40, height: 40,
+          borderRadius: 8,
+          background: "#02122F",
+          border: "1px solid rgba(240,236,221,0.12)",
+          color: "#F0ECDD",
+          cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+          zIndex: 300, transition: "all 0.15s", boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
         }}
       >
         {open
@@ -562,26 +564,9 @@ export function HamburgerMenu({
 
           <div className="hm-sep" />
 
-          <div className="hm-item" onClick={() => setOpen(false)}>
-            <div className="hm-item-left" style={{ color:"#a78bfa" }}>
-              <Sparkles size={15} color="#a78bfa" />Sketches+
-            </div>
-          </div>
-          <div className="hm-item" onClick={() => { window.open("https://github.com","_blank"); setOpen(false); }}>
-            <div className="hm-item-left"><GitBranch size={15} />GitHub</div>
-          </div>
-          <div className="hm-item" onClick={() => { window.open("https://twitter.com","_blank"); setOpen(false); }}>
-            <div className="hm-item-left">
-              <span style={{ fontSize:15, fontWeight:700, lineHeight:1, width:15, display:"inline-block" }}>𝕏</span>
-              Follow us
-            </div>
-          </div>
-          <div className="hm-item" onClick={() => { window.open("https://discord.com","_blank"); setOpen(false); }}>
-            <div className="hm-item-left"><MessageCircle size={15} />Discord chat</div>
-          </div>
-          <div className="hm-item" onClick={() => setOpen(false)}>
-            <div className="hm-item-left" style={{ color:"#a78bfa" }}>
-              <UserPlus size={15} color="#a78bfa" />Sign up
+          <div className="hm-item" onClick={() => { router.push("/dashboard"); setOpen(false); }}>
+            <div className="hm-item-left" style={{ color: "#F0ECDD" }}>
+              <LayoutDashboard size={15} />Back to dashboard
             </div>
           </div>
 
