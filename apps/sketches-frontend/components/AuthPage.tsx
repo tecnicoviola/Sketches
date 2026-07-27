@@ -3,6 +3,7 @@
 import { HTTP_BACKEND } from "@/config";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const PANEL_IMAGE = "/garden-night.png";
 
@@ -370,10 +371,13 @@ export function AuthPage({ isSignin }: { isSignin: boolean }) {
 
           <p className="sk-toggle">
             {isSigninMode ? "Don't have an account?" : "Already have an account?"}
-            <span className="sk-toggle-link"
-              onClick={() => { setError(""); setMode(isSigninMode ? "signup" : "signin"); }}>
+            <Link
+              href={isSigninMode ? "/signup" : "/signin"}
+              className="sk-toggle-link"
+              onClick={() => setError("")}
+            >
               {isSigninMode ? "Sign up" : "Sign in"}
-            </span>
+            </Link>
           </p>
         </div>
       </div>
