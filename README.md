@@ -55,25 +55,13 @@
 <p></p>
 
 <div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/dark/showcase_header.svg" />
-    <img src="assets/light/showcase_header.svg" alt="Project Showcase Header" width="100%" />
-  </picture>
-</div>
-
-<p></p>
-
-<div align="center">
-  <!-- 
-    ===================================================================
-    OPENSCREEN VIDEO DEMO PLACEHOLDER
-    Replace the src below with your OpenScreen video link or asset path:
-    ===================================================================
-  -->
-  <video src="assets/sketches-showcase.mp4" width="100%" controls poster="assets/thumbnail-poster.png" style="border-radius: 8px; border: 1px solid rgba(240,236,221,0.15);">
-    Your browser does not support the video tag.
-  </video>
-  <p><i>Recorded with OpenScreen — Demonstrating real-time WebSocket synchronization, custom drawing tools, decaying eraser trail, and AI diagramming.</i></p>
+  <a href="assets/sketches-showcase.mp4">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/dark/showcase_header.svg" />
+      <img src="assets/light/showcase_header.svg" alt="Project Showcase Header - Click to Watch Demo" width="100%" />
+    </picture>
+  </a>
+  <p><i>▶️ <b><a href="assets/sketches-showcase.mp4">Click here to watch the full demo video</a></b> — Recorded with OpenScreen, demonstrating real-time WebSocket synchronization, custom drawing tools, decaying eraser trail, and AI diagramming.</i></p>
 </div>
 
 <p></p>
