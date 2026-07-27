@@ -1,0 +1,18 @@
+<svg viewBox="0 0 1000 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Section 03 Features Light">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Jost:wght@300;400;500&amp;display=swap');
+    :root { --rule: rgba(2, 18, 47, 0.15); --muted: rgba(2, 18, 47, 0.55); --accent: #02122F; --ghost: rgba(2, 18, 47, 0.22); }
+    .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+    .sans { font-family: 'Jost', system-ui, sans-serif; }
+    .draw { stroke: var(--rule); stroke-width: 1; stroke-dasharray: 760; stroke-dashoffset: 760; animation: d 1.3s cubic-bezier(.6,0,.2,1) .2s forwards; }
+    @keyframes d { to { stroke-dashoffset: 0; } }
+    .f { opacity: 0; animation: f .8s ease .1s forwards; }
+    @keyframes f { to { opacity: 1; } }
+  </style>
+  <g class="f">
+    <text class="serif" x="48" y="58" font-size="52" fill="var(--ghost)" font-weight="300">03</text>
+    <text class="sans" x="124" y="48" font-size="12" fill="var(--accent)" letter-spacing="4" font-weight="500">FEATURES &amp; CAPABILITIES</text>
+    <text class="sans" x="952" y="48" font-size="10" fill="var(--muted)" letter-spacing="2.5" font-weight="500" text-anchor="end">~/03-features</text>
+  </g>
+  <line class="draw" x1="380" y1="44" x2="831" y2="44"/>
+</svg>

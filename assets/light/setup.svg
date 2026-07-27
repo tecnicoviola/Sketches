@@ -1,0 +1,41 @@
+<svg viewBox="0 0 1000 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Setup and Deployment Guide Light">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Jost:wght@300;400;500&amp;display=swap');
+    :root { 
+      --bg: #F0ECDD; 
+      --bone: #02122F; 
+      --rule: rgba(2, 18, 47, 0.15); 
+      --muted: rgba(2, 18, 47, 0.65); 
+      --box-bg: rgba(2, 18, 47, 0.04); 
+      --code-bg: rgba(2, 18, 47, 0.06); 
+      --frost: #23354D; 
+    }
+    .serif { font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif; }
+    .sans { font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Consolas, Menlo, monospace; }
+  </style>
+
+  <rect width="1000" height="360" rx="12" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+
+  <!-- Card Header -->
+  <text class="serif" fill="var(--bone)" x="48" y="52" font-size="24" font-weight="300" letter-spacing="4">SETUP &amp; DEPLOYMENT GUIDE</text>
+  <text class="sans" fill="var(--frost)" x="952" y="48" font-size="10" letter-spacing="2.5" font-weight="500" text-anchor="end">PNPM WORKSPACE MONOREPO</text>
+
+  <line x1="48" y1="70" x2="952" y2="70" stroke="var(--rule)" stroke-width="1"/>
+
+  <!-- Step 1 -->
+  <text class="sans" fill="var(--frost)" x="48" y="102" font-size="11" letter-spacing="2" font-weight="500">01. CLONE &amp; INSTALL</text>
+  <rect x="48" y="112" width="904" height="42" rx="6" fill="var(--code-bg)" stroke="var(--rule)" stroke-width="1"/>
+  <text class="mono" fill="var(--bone)" x="68" y="138" font-size="12">git clone https://github.com/tecnicoviola/Sketches.git &amp;&amp; cd Sketches &amp;&amp; pnpm install</text>
+
+  <!-- Step 2 -->
+  <text class="sans" fill="var(--frost)" x="48" y="182" font-size="11" letter-spacing="2" font-weight="500">02. DATABASE MIGRATION</text>
+  <rect x="48" y="192" width="904" height="42" rx="6" fill="var(--code-bg)" stroke="var(--rule)" stroke-width="1"/>
+  <text class="mono" fill="var(--bone)" x="68" y="218" font-size="12">pnpm --filter @repo/db exec prisma db push</text>
+
+  <!-- Step 3 -->
+  <text class="sans" fill="var(--frost)" x="48" y="262" font-size="11" letter-spacing="2" font-weight="500">03. LOCAL DEVELOPMENT</text>
+  <rect x="48" y="272" width="904" height="42" rx="6" fill="var(--code-bg)" stroke="var(--rule)" stroke-width="1"/>
+  <text class="mono" fill="var(--bone)" x="68" y="298" font-size="12">pnpm dev</text>
+  <text class="sans" fill="var(--muted)" x="932" y="298" font-size="10" letter-spacing="1.5" text-anchor="end">Frontend :3001 | HTTP :3004 | WS :8080</text>
+</svg>

@@ -1,159 +1,116 @@
-# Turborepo starter
+<div align="center">
 
-This Turborepo starter is maintained by the Turborepo core team.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/dark/header.svg" />
+  <img src="assets/light/header.svg" alt="Sketches Architecture Header" width="100%" />
+</picture>
 
-## Using this example
+<p></p>
 
-Run the following command:
+<a href="https://sketches-canvas.vercel.app/"><img src="https://img.shields.io/badge/Live_App-sketches--canvas.vercel.app-F0ECDD?style=for-the-badge&logo=vercel&logoColor=02122F" height="34" alt="Live App" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.linkedin.com/in/suhani-%E3%85%A4-%E2%80%8E-6b30702a0"><img src="https://img.shields.io/badge/LinkedIn-Suhani_Verma-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" height="34" alt="LinkedIn" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://suhanive.netlify.app/"><img src="https://img.shields.io/badge/Portfolio-suhanive.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" height="34" alt="Portfolio" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/tecnicoviola/Sketches"><img src="https://img.shields.io/badge/GitHub-tecnicoviola%2FSketches-181717?style=for-the-badge&logo=github&logoColor=white" height="34" alt="GitHub Repo"/></a>
 
-```sh
-npx create-turbo@latest
+<p></p>
+
+</div>
+
+## 🚀 Overview
+
+**Sketches** is a real-time collaborative drawing application and AI-assisted diagramming engine built for scale and aesthetic restraint. Architected as a high-performance **pnpm monorepo** with Turborepo, it pairs a Next.js 16 frontend with an Express.js HTTP API and a standalone WebSocket server for live stroke-by-stroke canvas synchronization.
+
+Designed around a curated Moonlight & Oxford Navy design system (`#02122F` dark surface, `#F0ECDD` text, `Cormorant Garamond` serif wordmarks, and `Jost` sans-serif controls), Sketches delivers a distraction-free environment for deep thinking, wild diagrams, and quiet focus.
+
+---
+
+## 🧠 System Architecture
+
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/dark/architecture.svg" />
+    <img src="assets/light/architecture.svg" alt="Monorepo Architecture Diagram" width="100%" />
+  </picture>
+</div>
+
+### 🗂️ Workspace Directory Topology
+
+```text
+sketches/
+├── apps/
+│   ├── sketches-frontend/      # Next.js 16 frontend (Canvas engine, Dashboard, Sketches+)
+│   ├── http-backend/           # Express.js API (Auth, Room routes, Prisma client)
+│   └── ws-backend/             # Node.js WebSocket server (Real-time broadcasting)
+│
+├── packages/
+│   ├── common/                 # Shared Zod schemas & TypeScript interfaces (types.ts)
+│   ├── backend-common/         # Shared JWT utils & authentication middleware
+│   ├── db/                     # Prisma ORM schema, migrations & Client instance
+│   ├── typescript-config/      # Shared tsconfig definitions
+│   └── eslint-config/          # Shared ESLint configuration
+│
+├── turbo.json                  # Turborepo task pipeline configuration
+├── package.json                # Root monorepo workspace dependencies
+└── README.md                   # Project documentation
 ```
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+## ✨ Features & Capabilities
 
-### Apps and Packages
+- ⚡ **Real-Time WebSocket Synchronization**: Sub-millisecond multi-user stroke and cursor broadcasting connected via 5-character lining code slugs (e.g. `cdY3V`).
+- ✍️ **12 Core Canvas Tools**: Selection, Pan (`grab`/`grabbing`), Rectangle, Diamond, Ellipse, Arrow, Line, Freehand Pencil, Text, Image, Eraser, and Laser Pointer.
+- 🪄 **Decaying Eraser Trail**: Opacity-decay animation (`350ms`) rendered behind active eraser movements with a floating circular ring cursor overlay.
+- 🤖 **AI Diagramming & Generation**: Groq AI integration (`/api/text-to-diagram`, `/api/mermaid-to-diagram`, `/api/wireframe-to-code`) to convert natural language descriptions and Mermaid code into interactive canvas shapes.
+- 🏠 **Dashboard & Hard Room Limits**: Read-only generated code displays, instant inline clipboard sharing, fixed card boundaries, and a hard 3-room active limit per account.
+- 🌌 **Sketches+ Pro Showcase**: Full-bleed hero artwork (`/orbital-dawn.png`), animated phrase rotation, and feature cards.
+- 🔒 **Production Ready Security**: JWT authentication, Zod schema validation, CORS origin parameterization, and Neon Serverless PostgreSQL integration.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+---
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## 🛠️ Technical Stack
 
-### Utilities
+| Layer | Technology | Description |
+| :--- | :--- | :--- |
+| **Frontend** | Next.js 16 (App Router, Turbopack) | Server &amp; Client Components, Lucide React, Custom HTML5 2D Canvas Engine |
+| **HTTP Backend** | Express.js / Node.js | REST API for Auth (`/signup`, `/signin`), Room CRUD, and JWT signing |
+| **Realtime Engine**| WebSockets (`ws`) | Dedicated WebSocket server handling room subscriptions and broadcasts |
+| **Database &amp; ORM** | PostgreSQL &amp; Prisma ORM | Relational schema for Users, Rooms, Chats, Comments, and Threads |
+| **AI Integration** | Groq API | LLM-assisted text-to-diagram &amp; Mermaid code generation |
+| **Architecture** | Turborepo &amp; pnpm 10 | High-speed monorepo task orchestration and workspace dependencies |
+| **Styling** | Vanilla CSS Tokens | `--oxford: #02122F`, `--moonlight: #F0ECDD`, `Cormorant Garamond`, `Jost` |
+| **Deployment** | Vercel &amp; Render | Vercel (Frontend), Render (HTTP &amp; WS Backends), Neon (Database) |
 
-This Turborepo has some additional tools already setup for you:
+---
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## 🎥 Project Showcase (OpenScreen Demo)
 
-### Build
+<div align="center">
+  <!-- 
+    ===================================================================
+    OPENSCREEN VIDEO DEMO PLACEHOLDER
+    Replace the src below with your OpenScreen video link or asset path:
+    ===================================================================
+  -->
+  <video src="assets/sketches-showcase.mp4" width="100%" controls poster="assets/thumbnail-poster.png" style="border-radius: 8px; border: 1px solid rgba(240,236,221,0.15);">
+    Your browser does not support the video tag.
+  </video>
+  <p><i>Recorded with OpenScreen — Demonstrating real-time WebSocket synchronization, custom drawing tools, decaying eraser trail, and AI diagramming.</i></p>
+</div>
 
-To build all apps and packages, run the following command:
+---
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+## ⚙️ Setup & Deployment Guide
 
-```sh
-cd my-turborepo
-turbo build
-```
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/dark/setup.svg" />
+    <img src="assets/light/setup.svg" alt="Setup and Deployment Guide" width="100%" />
+  </picture>
+</div>
 
-Without global `turbo`, use your package manager:
+---
 
-```sh
-cd my-turborepo
-npx turbo build
-pnpm dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo build --filter=docs
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo dev
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo dev
-pnpm exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-pnpm exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-pnpm exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/dark/footer.svg" />
+    <img src="assets/light/footer.svg" alt="Footer Status" width="100%" />
+  </picture>
+</div>
