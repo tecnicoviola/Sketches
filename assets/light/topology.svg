@@ -1,0 +1,37 @@
+<svg viewBox="0 0 1000 380" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Workspace Directory Topology Light">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Jost:wght@300;400;500&amp;display=swap');
+    :root { 
+      --bone: #02122F; 
+      --rule: rgba(2, 18, 47, 0.18); 
+      --muted: rgba(2, 18, 47, 0.65); 
+      --frost: #23354D; 
+      --code-bg: rgba(2, 18, 47, 0.04); 
+    }
+    .serif { font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif; }
+    .sans { font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Consolas, Menlo, monospace; }
+  </style>
+
+  <rect width="1000" height="380" rx="12" fill="none" stroke="var(--rule)" stroke-width="1"/>
+
+  <text class="serif" fill="var(--bone)" x="48" y="48" font-size="24" font-weight="300" letter-spacing="4">03 — WORKSPACE DIRECTORY TOPOLOGY</text>
+  <text class="sans" fill="var(--frost)" x="952" y="44" font-size="10" letter-spacing="2.5" font-weight="500" text-anchor="end">MONOREPO TREE</text>
+
+  <line x1="48" y1="64" x2="952" y2="64" stroke="var(--rule)" stroke-width="1"/>
+
+  <rect x="48" y="80" width="904" height="275" rx="8" fill="var(--code-bg)" stroke="var(--rule)" stroke-width="1"/>
+
+  <text class="mono" fill="var(--bone)" x="72" y="110" font-size="12">sketches/</text>
+  <text class="mono" fill="var(--bone)" x="72" y="130" font-size="12">├── apps/</text>
+  <text class="mono" fill="var(--bone)" x="72" y="150" font-size="12">│   ├── sketches-frontend/    <tspan fill="var(--frost)"># Next.js 16 frontend (Canvas engine, Dashboard, Sketches+)</tspan></text>
+  <text class="mono" fill="var(--bone)" x="72" y="170" font-size="12">│   ├── http-backend/         <tspan fill="var(--frost)"># Express.js API (Auth, Room routes, Prisma client)</tspan></text>
+  <text class="mono" fill="var(--bone)" x="72" y="190" font-size="12">│   └── ws-backend/           <tspan fill="var(--frost)"># Node.js WebSocket server (Real-time broadcasting)</tspan></text>
+  <text class="mono" fill="var(--bone)" x="72" y="210" font-size="12">│</text>
+  <text class="mono" fill="var(--bone)" x="72" y="230" font-size="12">├── packages/</text>
+  <text class="mono" fill="var(--bone)" x="72" y="250" font-size="12">│   ├── common/               <tspan fill="var(--frost)"># Shared Zod schemas &amp; TypeScript interfaces (types.ts)</tspan></text>
+  <text class="mono" fill="var(--bone)" x="72" y="270" font-size="12">│   ├── backend-common/       <tspan fill="var(--frost)"># Shared JWT utils &amp; authentication middleware</tspan></text>
+  <text class="mono" fill="var(--bone)" x="72" y="290" font-size="12">│   └── db/                   <tspan fill="var(--frost)"># Prisma ORM schema, migrations &amp; Client instance</tspan></text>
+  <text class="mono" fill="var(--bone)" x="72" y="310" font-size="12">│</text>
+  <text class="mono" fill="var(--bone)" x="72" y="330" font-size="12">├── turbo.json                 <tspan fill="var(--frost)"># Turborepo task pipeline configuration</tspan></text>
+</svg>

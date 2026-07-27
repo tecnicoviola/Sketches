@@ -2,20 +2,25 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/dark/header.svg" />
-  <img src="assets/light/header.svg" alt="Sketches Architecture Header" width="100%" />
+  <img src="assets/light/header.svg" alt="Sketches Header" width="100%" />
 </picture>
+
+<p></p>
+
+<a href="https://sketches-canvas.vercel.app/"><img src="https://img.shields.io/badge/Live_App-sketches--canvas.vercel.app-F0ECDD?style=for-the-badge&logo=vercel&logoColor=02122F" height="34" alt="Live App" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.linkedin.com/in/suhani-%E3%85%A4-%E2%80%8E-6b30702a0"><img src="https://img.shields.io/badge/LinkedIn-Suhani_Verma-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" height="34" alt="LinkedIn" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://suhanive.netlify.app/"><img src="https://img.shields.io/badge/Portfolio-suhanive.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" height="34" alt="Portfolio" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/tecnicoviola/Sketches"><img src="https://img.shields.io/badge/GitHub-tecnicoviola%2FSketches-181717?style=for-the-badge&logo=github&logoColor=white" height="34" alt="GitHub Repo"/></a>
+
+<p></p>
 
 </div>
 
-## 🚀 Overview
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/dark/overview.svg" />
+    <img src="assets/light/overview.svg" alt="Overview and Philosophy" width="100%" />
+  </picture>
+</div>
 
-**Sketches** is a real-time collaborative drawing application and AI-assisted diagramming engine built for scale and aesthetic restraint. Architected as a high-performance **pnpm monorepo** with Turborepo, it pairs a Next.js 16 frontend with an Express.js HTTP API and a standalone WebSocket server for live stroke-by-stroke canvas synchronization.
-
-Designed around a curated Moonlight & Oxford Navy design system (`#02122F` dark surface, `#F0ECDD` text, `Cormorant Garamond` serif wordmarks, and `Jost` sans-serif controls), Sketches delivers a distraction-free environment for deep thinking, wild diagrams, and quiet focus.
-
----
-
-## 🧠 System Architecture
+<p></p>
 
 <div align="center">
   <picture>
@@ -24,57 +29,43 @@ Designed around a curated Moonlight & Oxford Navy design system (`#02122F` dark 
   </picture>
 </div>
 
-### 🗂️ Workspace Directory Topology
+<p></p>
 
-```text
-sketches/
-├── apps/
-│   ├── sketches-frontend/      # Next.js 16 frontend (Canvas engine, Dashboard, Sketches+)
-│   ├── http-backend/           # Express.js API (Auth, Room routes, Prisma client)
-│   └── ws-backend/             # Node.js WebSocket server (Real-time broadcasting)
-│
-├── packages/
-│   ├── common/                 # Shared Zod schemas & TypeScript interfaces (types.ts)
-│   ├── backend-common/         # Shared JWT utils & authentication middleware
-│   ├── db/                     # Prisma ORM schema, migrations & Client instance
-│   ├── typescript-config/      # Shared tsconfig definitions
-│   └── eslint-config/          # Shared ESLint configuration
-│
-├── turbo.json                  # Turborepo task pipeline configuration
-├── package.json                # Root monorepo workspace dependencies
-└── README.md                   # Project documentation
-```
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/dark/topology.svg" />
+    <img src="assets/light/topology.svg" alt="Workspace Directory Topology" width="100%" />
+  </picture>
+</div>
 
----
+<p></p>
 
-## ✨ Features & Capabilities
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/dark/features.svg" />
+    <img src="assets/light/features.svg" alt="Features and Capabilities" width="100%" />
+  </picture>
+</div>
 
-- ⚡ **Real-Time WebSocket Synchronization**: Sub-millisecond multi-user stroke and cursor broadcasting connected via 5-character lining code slugs (e.g. `cdY3V`).
-- ✍️ **12 Core Canvas Tools**: Selection, Pan (`grab`/`grabbing`), Rectangle, Diamond, Ellipse, Arrow, Line, Freehand Pencil, Text, Image, Eraser, and Laser Pointer.
-- 🪄 **Decaying Eraser Trail**: Opacity-decay animation (`350ms`) rendered behind active eraser movements with a floating circular ring cursor overlay.
-- 🤖 **AI Diagramming & Generation**: Groq AI integration (`/api/text-to-diagram`, `/api/mermaid-to-diagram`, `/api/wireframe-to-code`) to convert natural language descriptions and Mermaid code into interactive canvas shapes.
-- 🏠 **Dashboard & Hard Room Limits**: Read-only generated code displays, instant inline clipboard sharing, fixed card boundaries, and a hard 3-room active limit per account.
-- 🌌 **Sketches+ Pro Showcase**: Full-bleed hero artwork (`/orbital-dawn.png`), animated phrase rotation, and feature cards.
-- 🔒 **Production Ready Security**: JWT authentication, Zod schema validation, CORS origin parameterization, and Neon Serverless PostgreSQL integration.
+<p></p>
 
----
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/dark/stack.svg" />
+    <img src="assets/light/stack.svg" alt="Technical Stack Grid" width="100%" />
+  </picture>
+</div>
 
-## 🛠️ Technical Stack
+<p></p>
 
-| Layer | Technology | Description |
-| :--- | :--- | :--- |
-| **Frontend** | Next.js 16 (App Router, Turbopack) | Server &amp; Client Components, Lucide React, Custom HTML5 2D Canvas Engine |
-| **HTTP Backend** | Express.js / Node.js | REST API for Auth (`/signup`, `/signin`), Room CRUD, and JWT signing |
-| **Realtime Engine**| WebSockets (`ws`) | Dedicated WebSocket server handling room subscriptions and broadcasts |
-| **Database &amp; ORM** | PostgreSQL &amp; Prisma ORM | Relational schema for Users, Rooms, Chats, Comments, and Threads |
-| **AI Integration** | Groq API | LLM-assisted text-to-diagram &amp; Mermaid code generation |
-| **Architecture** | Turborepo &amp; pnpm 10 | High-speed monorepo task orchestration and workspace dependencies |
-| **Styling** | Vanilla CSS Tokens | `--oxford: #02122F`, `--moonlight: #F0ECDD`, `Cormorant Garamond`, `Jost` |
-| **Deployment** | Vercel &amp; Render | Vercel (Frontend), Render (HTTP &amp; WS Backends), Neon (Database) |
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/dark/showcase_header.svg" />
+    <img src="assets/light/showcase_header.svg" alt="Project Showcase Header" width="100%" />
+  </picture>
+</div>
 
----
-
-## 🎥 Project Showcase (OpenScreen Demo)
+<p></p>
 
 <div align="center">
   <!-- 
@@ -89,9 +80,7 @@ sketches/
   <p><i>Recorded with OpenScreen — Demonstrating real-time WebSocket synchronization, custom drawing tools, decaying eraser trail, and AI diagramming.</i></p>
 </div>
 
----
-
-## ⚙️ Setup & Deployment Guide
+<p></p>
 
 <div align="center">
   <picture>
@@ -100,7 +89,7 @@ sketches/
   </picture>
 </div>
 
----
+<p></p>
 
 <div align="center">
   <picture>

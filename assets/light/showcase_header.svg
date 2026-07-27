@@ -1,0 +1,17 @@
+<svg viewBox="0 0 1000 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Showcase Header Light">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Jost:wght@300;400;500&amp;display=swap');
+    :root { 
+      --bone: #02122F; 
+      --rule: rgba(2, 18, 47, 0.18); 
+      --frost: #23354D; 
+    }
+    .serif { font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif; }
+    .sans { font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  </style>
+
+  <rect width="1000" height="80" rx="12" fill="none" stroke="var(--rule)" stroke-width="1"/>
+
+  <text class="serif" fill="var(--bone)" x="48" y="48" font-size="24" font-weight="300" letter-spacing="4">06 — PROJECT SHOWCASE (OPENSCREEN DEMO)</text>
+  <text class="sans" fill="var(--frost)" x="952" y="44" font-size="10" letter-spacing="2.5" font-weight="500" text-anchor="end">VIDEO RECORDING</text>
+</svg>

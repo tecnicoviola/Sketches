@@ -1,4 +1,4 @@
-<svg viewBox="0 0 1000 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Monorepo Architecture Diagram">
+<svg viewBox="0 0 1000 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Monorepo Architecture Diagram">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Jost:wght@300;400;500&amp;display=swap');
     :root { --bone: #F0ECDD; --rule: rgba(240, 236, 221, 0.18); --muted: rgba(240, 236, 221, 0.6); --frost: #8BA3C5; }
@@ -7,36 +7,42 @@
   </style>
 
   <!-- Outer Box Transparent -->
-  <rect width="1000" height="320" rx="12" fill="none" stroke="var(--rule)" stroke-width="1"/>
+  <rect width="1000" height="360" rx="12" fill="none" stroke="var(--rule)" stroke-width="1"/>
+
+  <!-- Card Header -->
+  <text class="serif" fill="var(--bone)" x="48" y="48" font-size="24" font-weight="300" letter-spacing="4">02 — SYSTEM ARCHITECTURE</text>
+  <text class="sans" fill="var(--frost)" x="952" y="44" font-size="10" letter-spacing="2.5" font-weight="500" text-anchor="end">TOPOLOGY DIAGRAM</text>
+
+  <line x1="48" y1="64" x2="952" y2="64" stroke="var(--rule)" stroke-width="1"/>
 
   <!-- Frontend Box -->
-  <rect x="48" y="48" width="260" height="145" rx="8" fill="none" stroke="var(--rule)" stroke-width="1"/>
-  <text class="serif" x="72" y="84" font-size="20" fill="var(--bone)" font-weight="400" letter-spacing="2">FRONTEND</text>
-  <text class="sans" x="72" y="108" font-size="11" fill="var(--muted)">Next.js 16 (App Router)</text>
-  <text class="sans" x="72" y="126" font-size="11" fill="var(--muted)">HTML5 2D Canvas Engine</text>
-  <text class="sans" x="72" y="146" font-size="10" fill="var(--frost)" letter-spacing="1">sketches-canvas.vercel.app</text>
+  <rect x="48" y="90" width="260" height="145" rx="8" fill="none" stroke="var(--rule)" stroke-width="1"/>
+  <text class="serif" x="72" y="126" font-size="20" fill="var(--bone)" font-weight="400" letter-spacing="2">FRONTEND</text>
+  <text class="sans" x="72" y="150" font-size="11" fill="var(--muted)">Next.js 16 (App Router)</text>
+  <text class="sans" x="72" y="168" font-size="11" fill="var(--muted)">HTML5 2D Canvas Engine</text>
+  <text class="sans" x="72" y="188" font-size="10" fill="var(--frost)" letter-spacing="1">sketches-canvas.vercel.app</text>
 
   <!-- WS Backend Box -->
-  <rect x="370" y="48" width="260" height="145" rx="8" fill="none" stroke="var(--rule)" stroke-width="1"/>
-  <text class="serif" x="394" y="84" font-size="20" fill="var(--bone)" font-weight="400" letter-spacing="2">WS BACKEND</text>
-  <text class="sans" x="394" y="108" font-size="11" fill="var(--muted)">Node.js WebSocket Server</text>
-  <text class="sans" x="394" y="126" font-size="11" fill="var(--muted)">Room Socket Broadcasts</text>
-  <text class="sans" x="394" y="146" font-size="10" fill="var(--frost)" letter-spacing="1">wss://sketches-ws.onrender.com</text>
+  <rect x="370" y="90" width="260" height="145" rx="8" fill="none" stroke="var(--rule)" stroke-width="1"/>
+  <text class="serif" x="394" y="126" font-size="20" fill="var(--bone)" font-weight="400" letter-spacing="2">WS BACKEND</text>
+  <text class="sans" x="394" y="150" font-size="11" fill="var(--muted)">Node.js WebSocket Server</text>
+  <text class="sans" x="394" y="168" font-size="11" fill="var(--muted)">Room Socket Broadcasts</text>
+  <text class="sans" x="394" y="188" font-size="10" fill="var(--frost)" letter-spacing="1">wss://sketches-ws.onrender.com</text>
 
   <!-- HTTP Backend Box -->
-  <rect x="692" y="48" width="260" height="145" rx="8" fill="none" stroke="var(--rule)" stroke-width="1"/>
-  <text class="serif" x="716" y="84" font-size="20" fill="var(--bone)" font-weight="400" letter-spacing="2">HTTP BACKEND</text>
-  <text class="sans" x="716" y="108" font-size="11" fill="var(--muted)">Express.js REST API</text>
-  <text class="sans" x="716" y="126" font-size="11" fill="var(--muted)">JWT Auth &amp; Room CRUD</text>
-  <text class="sans" x="716" y="146" font-size="10" fill="var(--frost)" letter-spacing="1">sketches-api.onrender.com</text>
+  <rect x="692" y="90" width="260" height="145" rx="8" fill="none" stroke="var(--rule)" stroke-width="1"/>
+  <text class="serif" x="716" y="126" font-size="20" fill="var(--bone)" font-weight="400" letter-spacing="2">HTTP BACKEND</text>
+  <text class="sans" x="716" y="150" font-size="11" fill="var(--muted)">Express.js REST API</text>
+  <text class="sans" x="716" y="168" font-size="11" fill="var(--muted)">JWT Auth &amp; Room CRUD</text>
+  <text class="sans" x="716" y="188" font-size="10" fill="var(--frost)" letter-spacing="1">sketches-api.onrender.com</text>
 
   <!-- Connection Lines -->
-  <path d="M 308 120 L 370 120" stroke="var(--frost)" stroke-width="1.5" stroke-dasharray="4 4"/>
-  <path d="M 630 120 L 692 120" stroke="var(--frost)" stroke-width="1.5"/>
+  <path d="M 308 162 L 370 162" stroke="var(--frost)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <path d="M 630 162 L 692 162" stroke="var(--frost)" stroke-width="1.5"/>
 
   <!-- Database Box at bottom -->
-  <rect x="310" y="230" width="380" height="52" rx="6" fill="none" stroke="var(--frost)" stroke-width="1"/>
-  <text class="serif" x="500" y="262" font-size="18" fill="var(--bone)" text-anchor="middle" font-weight="400" letter-spacing="2">NEON POSTGRESQL DATABASE</text>
+  <rect x="310" y="272" width="380" height="52" rx="6" fill="none" stroke="var(--frost)" stroke-width="1"/>
+  <text class="serif" x="500" y="304" font-size="18" fill="var(--bone)" text-anchor="middle" font-weight="400" letter-spacing="2">NEON POSTGRESQL DATABASE</text>
 
-  <path d="M 500 193 L 500 230" stroke="var(--frost)" stroke-width="1.5"/>
+  <path d="M 500 235 L 500 272" stroke="var(--frost)" stroke-width="1.5"/>
 </svg>
