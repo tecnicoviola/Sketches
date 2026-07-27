@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sketches — Showcase & Demo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      line-height: 1.5;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    img, picture {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    video {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(240, 236, 221, 0.15);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      background-color: #000;
+    }
+    p.caption {
+      font-size: 0.95rem;
+      color: #8b949e;
+      font-style: italic;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/dark/header.svg" />
+      <img src="assets/light/header.svg" alt="Sketches Header" />
+    </picture>
+
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/dark/overview.svg" />
+      <img src="assets/light/overview.svg" alt="Overview and Philosophy" />
+    </picture>
+
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/dark/architecture.svg" />
+      <img src="assets/light/architecture.svg" alt="Monorepo Architecture Diagram" />
+    </picture>
+
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/dark/topology.svg" />
+      <img src="assets/light/topology.svg" alt="Workspace Directory Topology" />
+    </picture>
+
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/dark/features.svg" />
+      <img src="assets/light/features.svg" alt="Features and Capabilities" />
+    </picture>
+
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/dark/stack.svg" />
+      <img src="assets/light/stack.svg" alt="Technical Stack Grid" />
+    </picture>
+
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/dark/showcase_header.svg" />
+      <img src="assets/light/showcase_header.svg" alt="Project Showcase Header" />
+    </picture>
+
+    <div style="width: 100%;">
+      <video src="assets/sketches-showcase.mp4" controls width="100%"></video>
+      <p class="caption">Recorded with OpenScreen — Demonstrating real-time WebSocket synchronization, custom drawing tools, decaying eraser trail, and AI diagramming.</p>
+    </div>
+
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/dark/setup.svg" />
+      <img src="assets/light/setup.svg" alt="Setup and Deployment Guide" />
+    </picture>
+
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/dark/footer.svg" />
+      <img src="assets/light/footer.svg" alt="Footer Status" />
+    </picture>
+  </div>
+</body>
+</html>
