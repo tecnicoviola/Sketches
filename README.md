@@ -5,12 +5,6 @@
   <img src="assets/light/header.svg" alt="Sketches Header" width="100%" />
 </picture>
 
-<p></p>
-
-<a href="https://sketches-canvas.vercel.app/"><img src="https://img.shields.io/badge/Live_App-sketches--canvas.vercel.app-F0ECDD?style=for-the-badge&logo=vercel&logoColor=02122F" height="34" alt="Live App" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.linkedin.com/in/suhani-%E3%85%A4-%E2%80%8E-6b30702a0"><img src="https://img.shields.io/badge/LinkedIn-Suhani_Verma-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" height="34" alt="LinkedIn" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://suhanive.netlify.app/"><img src="https://img.shields.io/badge/Portfolio-suhanive.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" height="34" alt="Portfolio" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/tecnicoviola/Sketches"><img src="https://img.shields.io/badge/GitHub-tecnicoviola%2FSketches-181717?style=for-the-badge&logo=github&logoColor=white" height="34" alt="GitHub Repo"/></a>
-
-<p></p>
-
 </div>
 
 <div align="center">
