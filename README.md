@@ -15,9 +15,12 @@
 
 ## 🚀 Overview
 
-**Sketches** is a real-time collaborative drawing application and AI-assisted diagramming engine built for scale and aesthetic restraint. Architected as a high-performance **pnpm monorepo** with Turborepo, it pairs a Next.js 16 frontend with an Express.js HTTP API and a standalone WebSocket server for live stroke-by-stroke canvas synchronization.
-
-Designed around a curated Moonlight & Oxford Navy design system (`#02122F` dark surface, `#F0ECDD` text, `Cormorant Garamond` serif wordmarks, and `Jost` sans-serif controls), Sketches delivers a distraction-free environment for deep thinking, wild diagrams, and quiet focus.
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/dark/overview.svg" />
+    <img src="assets/light/overview.svg" alt="Overview and Philosophy" width="100%" />
+  </picture>
+</div>
 
 ---
 
@@ -55,17 +58,23 @@ sketches/
 
 ## ✨ Features & Capabilities
 
-- ⚡ **Real-Time WebSocket Synchronization**: Sub-millisecond multi-user stroke and cursor broadcasting connected via 5-character lining code slugs (e.g. `cdY3V`).
-- ✍️ **12 Core Canvas Tools**: Selection, Pan (`grab`/`grabbing`), Rectangle, Diamond, Ellipse, Arrow, Line, Freehand Pencil, Text, Image, Eraser, and Laser Pointer.
-- 🪄 **Decaying Eraser Trail**: Opacity-decay animation (`350ms`) rendered behind active eraser movements with a floating circular ring cursor overlay.
-- 🤖 **AI Diagramming & Generation**: Groq AI integration (`/api/text-to-diagram`, `/api/mermaid-to-diagram`, `/api/wireframe-to-code`) to convert natural language descriptions and Mermaid code into interactive canvas shapes.
-- 🏠 **Dashboard & Hard Room Limits**: Read-only generated code displays, instant inline clipboard sharing, fixed card boundaries, and a hard 3-room active limit per account.
-- 🌌 **Sketches+ Pro Showcase**: Full-bleed hero artwork (`/orbital-dawn.png`), animated phrase rotation, and feature cards.
-- 🔒 **Production Ready Security**: JWT authentication, Zod schema validation, CORS origin parameterization, and Neon Serverless PostgreSQL integration.
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/dark/features.svg" />
+    <img src="assets/light/features.svg" alt="Features and Capabilities" width="100%" />
+  </picture>
+</div>
 
 ---
 
 ## 🛠️ Technical Stack
+
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/dark/stack.svg" />
+    <img src="assets/light/stack.svg" alt="Technical Stack Grid" width="100%" />
+  </picture>
+</div>
 
 | Layer | Technology | Description |
 | :--- | :--- | :--- |

@@ -1,11 +1,10 @@
-<svg viewBox="0 0 1000 280" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketches Header">
+<svg viewBox="0 0 1000 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketches Header">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Jost:wght@300;400;500&amp;display=swap');
     
     :root { 
-      --bg: #02122F; 
       --moonlight: #F0ECDD; 
-      --rule: rgba(240, 236, 221, 0.15); 
+      --rule: rgba(240, 236, 221, 0.18); 
       --muted: rgba(240, 236, 221, 0.6); 
       --frost: #8BA3C5; 
     }
@@ -24,32 +23,33 @@
     }
   </style>
 
-  <rect width="1000" height="280" rx="12" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+  <!-- Border Card (Transparent BG) -->
+  <rect width="1000" height="240" rx="12" fill="none" stroke="var(--rule)" stroke-width="1"/>
 
   <!-- Title -->
   <g class="rise a1">
-    <text fill="var(--moonlight)" class="serif" x="48" y="115" font-size="72" letter-spacing="8" font-weight="300">SKETCHES</text>
+    <text fill="var(--moonlight)" class="serif" x="48" y="95" font-size="72" letter-spacing="8" font-weight="300">SKETCHES</text>
   </g>
   
   <!-- Subtitle -->
   <g class="fade a2">
-    <text fill="var(--moonlight)" class="serif" x="48" y="160" font-size="24" font-weight="300" font-style="italic">Where collaboration <tspan font-style="normal" font-weight="400">truly</tspan> happens.</text>
+    <text fill="var(--moonlight)" class="serif" x="48" y="138" font-size="24" font-weight="300" font-style="italic">Where collaboration <tspan font-style="normal" font-weight="400">truly</tspan> happens.</text>
   </g>
 
   <!-- Stack Line -->
   <g class="fade a3">
-    <text fill="var(--muted)" class="sans" x="48" y="208" font-size="10" letter-spacing="3" font-weight="500">STACK  ▸</text>
-    <text fill="var(--moonlight)" class="sans" x="128" y="208" font-size="11" letter-spacing="2.5" font-weight="400">NEXT.JS 16 · WEBSOCKETS · PRISMA · GROQ AI · TURBOREPO</text>
+    <text fill="var(--muted)" class="sans" x="48" y="178" font-size="10" letter-spacing="3" font-weight="500">STACK  ▸</text>
+    <text fill="var(--moonlight)" class="sans" x="128" y="178" font-size="11" letter-spacing="2.5" font-weight="400">NEXT.JS 16 · WEBSOCKETS · PRISMA · GROQ AI · TURBOREPO</text>
   </g>
 
   <!-- Divider & Footer Row -->
-  <line class="draw a3" x1="48" y1="230" x2="952" y2="230" stroke="var(--rule)" stroke-width="1"/>
+  <line class="draw a3" x1="48" y1="198" x2="952" y2="198" stroke="var(--rule)" stroke-width="1"/>
   <g class="fade a4">
-    <text fill="var(--muted)" class="sans" x="48" y="254" font-size="10" letter-spacing="3" font-weight="500">12 CANVAS TOOLS</text>
-    <text fill="var(--moonlight)" class="serif" x="195" y="254" font-size="14">·</text>
-    <text fill="var(--muted)" class="sans" x="215" y="254" font-size="10" letter-spacing="3" font-weight="500">DECAYING ERASER TRAIL</text>
-    <text fill="var(--moonlight)" class="serif" x="415" y="254" font-size="14">·</text>
-    <text fill="var(--muted)" class="sans" x="435" y="254" font-size="10" letter-spacing="3" font-weight="500">3-ROOM ACTIVE CAP</text>
-    <text fill="var(--frost)" class="sans" x="952" y="254" font-size="10" letter-spacing="3" font-weight="500" text-anchor="end">STATUS: PRODUCTION LIVE</text>
+    <text fill="var(--muted)" class="sans" x="48" y="220" font-size="10" letter-spacing="3" font-weight="500">12 CANVAS TOOLS</text>
+    <text fill="var(--moonlight)" class="serif" x="195" y="220" font-size="14">·</text>
+    <text fill="var(--muted)" class="sans" x="215" y="220" font-size="10" letter-spacing="3" font-weight="500">DECAYING ERASER TRAIL</text>
+    <text fill="var(--moonlight)" class="serif" x="415" y="220" font-size="14">·</text>
+    <text fill="var(--muted)" class="sans" x="435" y="220" font-size="10" letter-spacing="3" font-weight="500">3-ROOM ACTIVE CAP</text>
+    <text fill="var(--frost)" class="sans" x="952" y="220" font-size="10" letter-spacing="3" font-weight="500" text-anchor="end">STATUS: PRODUCTION LIVE</text>
   </g>
 </svg>

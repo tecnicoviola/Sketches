@@ -2,12 +2,10 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Jost:wght@300;400;500&amp;display=swap');
     :root { 
-      --bg: #F0ECDD; 
       --bone: #02122F; 
-      --rule: rgba(2, 18, 47, 0.15); 
+      --rule: rgba(2, 18, 47, 0.18); 
       --muted: rgba(2, 18, 47, 0.65); 
-      --box-bg: rgba(2, 18, 47, 0.04); 
-      --code-bg: rgba(2, 18, 47, 0.06); 
+      --code-bg: rgba(2, 18, 47, 0.04); 
       --frost: #23354D; 
     }
     .serif { font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif; }
@@ -15,7 +13,7 @@
     .mono { font-family: ui-monospace, SFMono-Regular, Consolas, Menlo, monospace; }
   </style>
 
-  <rect width="1000" height="360" rx="12" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+  <rect width="1000" height="360" rx="12" fill="none" stroke="var(--rule)" stroke-width="1"/>
 
   <!-- Card Header -->
   <text class="serif" fill="var(--bone)" x="48" y="52" font-size="24" font-weight="300" letter-spacing="4">SETUP &amp; DEPLOYMENT GUIDE</text>
