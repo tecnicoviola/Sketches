@@ -70,10 +70,10 @@
     Replace the src below with your OpenScreen video link or asset path:
     ===================================================================
   -->
-  <video src="assets/sketches-showcase.mp4" width="100%" controls poster="assets/thumbnail-poster.png" style="border-radius: 8px; border: 1px solid rgba(240,236,221,0.15);">
+  
+  <video src="https://tecnicoviola.github.io/Sketches/assets/sketches-showcase.mp4" width="100%" controls poster="assets/thumbnail-poster.png" style="border-radius: 8px; border: 1px solid rgba(240,236,221,0.15);">
     Your browser does not support the video tag.
   </video>
-  <p><i>▶️ <b><a href="https://tecnicoviola.github.io/Sketches/">Watch Live Video Demo on GitHub Pages</a></b> — Recorded with OpenScreen, demonstrating real-time WebSocket synchronization, custom drawing tools, decaying eraser trail, and AI diagramming.</i></p>
 </div>
 
 <p></p>
