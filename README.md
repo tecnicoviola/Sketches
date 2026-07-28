@@ -71,9 +71,8 @@
     ===================================================================
   -->
   
-  <video src="https://tecnicoviola.github.io/Sketches/assets/sketches-showcase.mp4" width="100%" controls poster="assets/thumbnail-poster.png" style="border-radius: 8px; border: 1px solid rgba(240,236,221,0.15);">
-    Your browser does not support the video tag.
-  </video>
+  [![Sketches demo on YouTube](https://img.youtube.com/vi/2tuNsWYUW-c/hqdefault.jpg)](https://youtu.be/2tuNsWYUW-c)
+
 </div>
 
 <p></p>
